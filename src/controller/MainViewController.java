@@ -1,4 +1,4 @@
-package gui;
+package controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,7 +37,7 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void onMenuItemDepartmentAction() {
-		System.out.println("ItemDepartmentAction");
+		loadView("/gui/DepartmentList.fxml");
 	}
 
 	@FXML
