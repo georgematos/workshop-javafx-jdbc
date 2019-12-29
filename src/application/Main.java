@@ -18,7 +18,7 @@ public class Main extends Application {
 			scrollPane.setFitToHeight(true);
 			scrollPane.setFitToWidth(true);
 			mainScene = new Scene(scrollPane);
-			mainScene.getStylesheets().add(getClass().getResource("/gui/application.css").toExternalForm());
+			mainScene.getStylesheets().add(getClass().getResource("/application/application.css").toExternalForm());
 			primaryStage.setScene(mainScene);
 			primaryStage.setTitle("Sample JavaFX application");
 			primaryStage.show();
