@@ -32,5 +32,6 @@ dist/
 nbdist/
 
 # others
-!/.classpath
+.classpath
 db.properties
+.settings/
