@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.stage.Stage;
+import model.entities.Department;
 
 public class Utils {
 
@@ -52,6 +53,23 @@ public class Utils {
 						setText(null);
 					} else {
 						setText(String.format("%." + decimalPlaces + "f", item));
+					}
+				}
+			};
+			return cell;
+		});
+	}
+
+	public static <T> void formatTableColumnDepartment(TableColumn<T, Department> tableColumn) {
+		tableColumn.setCellFactory(column -> {
+			TableCell<T, Department> cell = new TableCell<T, Department>() {
+				@Override
+				protected void updateItem(Department item, boolean empty) {
+					super.updateItem(item, empty);
+					if (empty) {
+						setText(null);
+					} else {
+						setText(item.getName());
 					}
 				}
 			};
