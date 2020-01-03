@@ -17,6 +17,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -28,7 +30,6 @@ import model.services.SellerService;
 public class SellerFormController implements Initializable {
 
 	private Seller seller;
-	private Department department;
 	private SellerService service;
 	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 
@@ -41,15 +42,31 @@ public class SellerFormController implements Initializable {
 	@FXML
 	private Label labelErrorName;
 	@FXML
+	private TextField txtFieldEmail;
+	@FXML
+	private Label labelErrorEmail;
+	@FXML
+	private DatePicker datePickerBirthDate;
+	@FXML
+	private Label labelErrorBirthDate;
+	@FXML
+	private TextField txtFieldBaseSalary;
+	@FXML
+	private Label labelErrorBaseSalary;
+	@FXML
+	private ComboBox<Department> comboBoxDepartment;
+	@FXML
+	private Label labelErrorDepartment;
+	@FXML
 	private Button btnSave;
 	@FXML
 	private Button btnCancel;
 
-	public void setDepartment(Department department) {
-		this.department = department;
+	public void setSeller(Seller seller) {
+		this.seller = seller;
 	}
 
-	public void setDepartmentService(SellerService service) {
+	public void setSellerService(SellerService service) {
 		this.service = service;
 	}
 
@@ -59,14 +76,14 @@ public class SellerFormController implements Initializable {
 
 	@FXML
 	public void onBtSaveAction(ActionEvent event) {
-		if (department == null) {
+		if (seller == null) {
 			throw new IllegalStateException("Entity was null");
 		}
 		if (service == null) {
 			throw new IllegalStateException("Service was null");
 		}
 		try {
-			department = getFormData();
+			seller = getFormData();
 			service.saveOrUpdate(seller);
 			notifyDataChangeListeners();
 			Utils.currentStage(event).close();
@@ -83,7 +100,7 @@ public class SellerFormController implements Initializable {
 		}
 	}
 
-	private Department getFormData() {
+	private Seller getFormData() {
 		String txtName = txtFieldName.getText();
 		ValidationException exception = new ValidationException("Validation Exception");
 		if (txtName.isEmpty()) {
@@ -92,10 +109,10 @@ public class SellerFormController implements Initializable {
 		if (exception.getErrors().size() > 0) {
 			throw exception;
 		}
-		Department dep = new Department();
-		dep.setId(Utils.tryParseToInt((txtFieldId.getText())));
-		dep.setName(txtName);
-		return dep;
+		Seller seller = new Seller();
+		seller.setId(Utils.tryParseToInt((txtFieldId.getText())));
+		seller.setName(txtName);
+		return seller;
 	}
 
 	@FXML
@@ -114,11 +131,11 @@ public class SellerFormController implements Initializable {
 	}
 
 	public void updateFormData() {
-		if (department == null) {
+		if (seller == null) {
 			throw new IllegalStateException("Entity was null");
 		}
-		txtFieldId.setText(String.valueOf(department.getId()));
-		txtFieldName.setText(String.valueOf(department.getName()));
+		txtFieldId.setText(String.valueOf(seller.getId()));
+		txtFieldName.setText(String.valueOf(seller.getName()));
 	}
 	
 	private void setErrorMessages(Map<String, String> errors) {
