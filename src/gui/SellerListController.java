@@ -59,7 +59,7 @@ public class SellerListController implements Initializable, DataChangeListener {
 	private TableColumn<Seller, Seller> tableColumnREMOVE;
 	@FXML
 	private Button btNew;
-	
+
 	@FXML
 	public void onBtNewAction(ActionEvent event) {
 		Stage parentStage = Utils.currentStage(event);

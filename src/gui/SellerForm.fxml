@@ -42,23 +42,23 @@
             <DatePicker fx:id="datePickerBirthDate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="txtFieldBaseSalary" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ComboBox fx:id="comboBoxDepartment" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <HBox prefHeight="20.0" prefWidth="154.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="154.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
                   <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onBtSaveAction" text="Save">
                      <HBox.margin>
-                        <Insets top="20.0" />
+                        <Insets />
                      </HBox.margin></Button>
                   <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#onBtCancelAction" text="Cancel">
                      <HBox.margin>
-                        <Insets top="20.0" />
+                        <Insets />
                      </HBox.margin></Button>
                </children>
             </HBox>
             <Label fx:id="labelErrorName" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Label GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Label GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Label fx:id="labelErrorEmail" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label fx:id="labelErrorBirthDate" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label fx:id="labelErrorBaseSalary" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label fx:id="labelErrorDepartment" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="5" />
          </children>
       </GridPane>
    </children>

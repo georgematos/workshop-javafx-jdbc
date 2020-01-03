@@ -1,8 +1,11 @@
 package gui;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -128,6 +131,9 @@ public class SellerFormController implements Initializable {
 	private void initializeNodes() {
 		Constraints.setTextFieldInteger(txtFieldId);
 		Constraints.setTextFieldMaxLength(txtFieldName, 30);
+		Constraints.setTextFieldDouble(txtFieldBaseSalary);
+		Constraints.setTextFieldMaxLength(txtFieldEmail, 60);
+		Utils.formatDatePicker(datePickerBirthDate, "dd/MM/yyyy");
 	}
 
 	public void updateFormData() {
@@ -135,9 +141,17 @@ public class SellerFormController implements Initializable {
 			throw new IllegalStateException("Entity was null");
 		}
 		txtFieldId.setText(String.valueOf(seller.getId()));
-		txtFieldName.setText(String.valueOf(seller.getName()));
+		txtFieldName.setText(seller.getName());
+		txtFieldEmail.setText(seller.getEmail());
+		Locale.setDefault(Locale.US);
+		if (seller.getBirthDate() != null) {
+			datePickerBirthDate
+					.setValue(LocalDate.ofInstant(seller.getBirthDate().toInstant(), ZoneId.systemDefault()));
+		}
+		txtFieldBaseSalary.setText(String.format("%.2f", seller.getBaseSalary()));
+		comboBoxDepartment.setValue(seller.getDepartment());
 	}
-	
+
 	private void setErrorMessages(Map<String, String> errors) {
 		Set<String> fields = errors.keySet();
 		if (fields.contains("name")) {
